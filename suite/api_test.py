@@ -240,7 +240,11 @@ class TimingTest(unittest.TestCase):
 			return
 
 		start_time = time.time()
+<<<<<<< HEAD
 		file_names = [os.path.join(os.path.dirname(__file__), "binaries", "quick3dcoreplugin.dll"),
+=======
+		file_names = [os.path.join(os.path.dirname(__file__), "binaries", "ntshrui.dll"),
+>>>>>>> 112fecf... Initial python API tests
 					os.path.join(os.path.dirname(__file__), "binaries", "md5"),
 					os.path.join(os.path.dirname(__file__), "binaries", "ls")]
 
@@ -259,8 +263,14 @@ class TimingTest(unittest.TestCase):
 				if os.path.exists(temp_name):
 					os.unlink(temp_name)
 
+<<<<<<< HEAD
 		log_url = os.environ.get('BINJA_LOG_URL')
 		if log_url:
 			time_s = time.time() - start_time
 			commit = subprocess.check_output(["git", "rev-parse", "HEAD"])[:-1]
 			conn = urllib.urlopen("%s?BuildID=%s&Test1=%.2f" % (log_url, commit, time_s))
+=======
+		time_s = time.time() - start_time
+		commit = subprocess.check_output(["git", "rev-parse", "HEAD"])[:-1]
+		conn = urllib.urlopen("https://script.google.com/macros/s/AKfycbxrZtlgLaWt3l95_7RyH9ceDdFIBm0VaR6jG1-4UDt6CFFCFzQ/exec?BuildID=%s&Test1=%.2f" % (commit, time_s))
+>>>>>>> 112fecf... Initial python API tests
