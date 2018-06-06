@@ -10,10 +10,6 @@ import api_test
 import difflib
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 112fecf... Initial python API tests
 class TestBinaryNinjaAPI(unittest.TestCase):
     @classmethod
     def setUpClass(self):
@@ -64,7 +60,6 @@ class TestBinaryNinjaAPI(unittest.TestCase):
     def test_Architecture(self):
         oracle = self.oracle_test_data['test_Architecture']
         test = self.builder.test_Architecture()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -79,14 +74,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Architecture.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_Architecture_list(self):
         oracle = self.oracle_test_data['test_Architecture_list']
         test = self.builder.test_Architecture_list()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -101,14 +92,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Architecture_list.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_Assemble(self):
         oracle = self.oracle_test_data['test_Assemble']
         test = self.builder.test_Assemble()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -123,14 +110,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Assemble.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_BinaryViewType_list(self):
         oracle = self.oracle_test_data['test_BinaryViewType_list']
         test = self.builder.test_BinaryViewType_list()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -145,14 +128,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_BinaryViewType_list.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_Enumeration(self):
         oracle = self.oracle_test_data['test_Enumeration']
         test = self.builder.test_Enumeration()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -167,14 +146,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Enumeration.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_Function(self):
         oracle = self.oracle_test_data['test_Function']
         test = self.builder.test_Function()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -189,14 +164,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Function.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_Plugin_bin_info(self):
         oracle = self.oracle_test_data['test_Plugin_bin_info']
         test = self.builder.test_Plugin_bin_info()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -211,14 +182,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Plugin_bin_info.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_Struct(self):
         oracle = self.oracle_test_data['test_Struct']
         test = self.builder.test_Struct()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -233,14 +200,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Struct.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_Types(self):
         oracle = self.oracle_test_data['test_Types']
         test = self.builder.test_Types()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -255,14 +218,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_Types.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_events(self):
         oracle = self.oracle_test_data['test_events']
         test = self.builder.test_events()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -277,14 +236,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_events.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_linear_disassembly(self):
         oracle = self.oracle_test_data['test_linear_disassembly']
         test = self.builder.test_linear_disassembly()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -299,14 +254,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_linear_disassembly.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_low_il_stack(self):
         oracle = self.oracle_test_data['test_low_il_stack']
         test = self.builder.test_low_il_stack()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -321,14 +272,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_low_il_stack.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_med_il_stack(self):
         oracle = self.oracle_test_data['test_med_il_stack']
         test = self.builder.test_med_il_stack()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -343,14 +290,10 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_med_il_stack.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_partial_register_dataflow(self):
         oracle = self.oracle_test_data['test_partial_register_dataflow']
         test = self.builder.test_partial_register_dataflow()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -365,9 +308,6 @@ class TestBinaryNinjaAPI(unittest.TestCase):
             result += delta + '\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\n'%s' does not equal\n'%s'" % (self.builder.test_partial_register_dataflow.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 
     def test_verify_BNDB_round_trip(self):
         self.assertTrue(self.verifybuilder.test_verify_BNDB_round_trip(), self.test_verify_BNDB_round_trip.__doc__)
@@ -420,15 +360,12 @@ class TestBinaryNinjaAPI(unittest.TestCase):
     def test_binary___loop_constant_propagate(self):
         self.run_binary_test('suite/binaries/test_corpus/loop_constant_propagate.zip')
 
-<<<<<<< HEAD
-=======
     def test_binary___ls(self):
         self.run_binary_test('suite/binaries/test_corpus/ls.zip')
 
     def test_binary___md5(self):
         self.run_binary_test('suite/binaries/test_corpus/md5.zip')
 
->>>>>>> 112fecf... Initial python API tests
     def test_binary___partial_register_dataflow(self):
         self.run_binary_test('suite/binaries/test_corpus/partial_register_dataflow.zip')
 
@@ -449,10 +386,6 @@ class TestBinaryNinjaAPI(unittest.TestCase):
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-
-=======
->>>>>>> 112fecf... Initial python API tests
     test_suite = unittest.defaultTestLoader.loadTestsFromModule(api_test)
     test_suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestBinaryNinjaAPI))
     runner = unittest.TextTestRunner(verbosity=2)

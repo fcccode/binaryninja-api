@@ -19,10 +19,6 @@ import api_test
 import difflib
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 112fecf... Initial python API tests
 class TestBinaryNinjaAPI(unittest.TestCase):
     @classmethod
     def setUpClass(self):
@@ -72,10 +68,6 @@ class TestBinaryNinjaAPI(unittest.TestCase):
 {1}{2}
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-
-=======
->>>>>>> 112fecf... Initial python API tests
     test_suite = unittest.defaultTestLoader.loadTestsFromModule(api_test)
     test_suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(TestBinaryNinjaAPI))
     runner = unittest.TextTestRunner(verbosity=2)
@@ -91,7 +83,6 @@ test_string = """
     def {0}(self):
         oracle = self.oracle_test_data['{0}']
         test = self.builder.{0}()
-<<<<<<< HEAD
         result = ""
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
@@ -106,9 +97,6 @@ test_string = """
             result += delta + '\\n'
 
         self.assertTrue(oracle == test, result)
-=======
-        self.assertTrue(oracle == test, "%s:\\n'%s' does not equal\\n'%s'" % (self.builder.{0}.__doc__, oracle, test))
->>>>>>> 112fecf... Initial python API tests
 """
 
 verify_string = """
@@ -274,11 +262,7 @@ def main():
     options, args = parser.parse_args()
 
     if not os.path.exists(os.path.join(os.getcwd(), 'suite')):
-<<<<<<< HEAD
         print("Error: Please run this script from the binaryninja-api root directory")
-=======
-        print "Error: Please run this script from the binaryninja-api root directory"
->>>>>>> 112fecf... Initial python API tests
         sys.exit(1)
 
     myprint("[+] INFO: Using test store: %s" % options.test_store)

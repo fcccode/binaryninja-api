@@ -535,6 +535,8 @@ class TestBuilder(Builder):
 
         os.unlink(file_name)
 
+        os.unlink(file_name)
+
         return retinfo
 
     def test_med_il_stack(self):
@@ -567,7 +569,6 @@ class TestBuilder(Builder):
                         retinfo.append("MLIL flag {} value after {}: ".format(flag, hex(ins.address)) + str(ins.get_flag_value_after(flag)))
                         retinfo.append("MLIL flag {} possible value at {}: ".format(flag, hex(ins.address)) + str(ins.get_possible_flag_values(flag)))
                         retinfo.append("MLIL flag {} possible value after {}: ".format(flag, hex(ins.address)) + str(ins.get_possible_flag_values(flag)))
-
 
         os.unlink(file_name)
 
