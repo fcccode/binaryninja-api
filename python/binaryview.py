@@ -1743,7 +1743,7 @@ class BinaryView(object):
 			\'\\xcf\\xfa\\xed\\xfe\'
 		"""
 		buf = databuffer.DataBuffer(handle=core.BNReadViewBuffer(self.handle, addr, length))
-		return str(buf)
+		return bytes(buf)
 
 	def write(self, addr, data):
 		"""
