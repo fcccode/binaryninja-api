@@ -131,7 +131,7 @@ class UnitTestFile:
         self.binary_tests = ""
 
     def close(self):
-        self.f.write(self.template.format(self.outdir, self.tests, self.binary_tests, self.test_store).encode('utf-8'))
+        self.f.write(self.template.format(self.outdir, self.tests, self.binary_tests, self.test_store).encode('charmap'))
         self.f.close()
 
     def add_verify(self, test_name):
