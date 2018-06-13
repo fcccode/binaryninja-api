@@ -27,6 +27,7 @@ import abc
 import sys
 
 # Binary Ninja components
+import binaryninja
 from binaryninja import _binaryninjacore as core
 from binaryninja.enums import ScriptingProviderExecuteResult, ScriptingProviderInputReadyState
 from binaryninja import log
@@ -490,7 +491,7 @@ class PythonScriptingInstance(ScriptingInstance):
 			self.code = None
 			self.input = ""
 
-			self.interpreter.push("from binaryninja import *\n")
+			self.interpreter.push("from binaryninja import *")
 
 		def execute(self, code):
 			self.code = code
@@ -553,8 +554,8 @@ class PythonScriptingInstance(ScriptingInstance):
 							self.locals["current_llil"] = self.active_func.low_level_il
 							self.locals["current_mlil"] = self.active_func.medium_level_il
 
-						for line in code.split("\n"):
-							self.interpreter.push(line)
+						for line in code.split(b'\n'):
+							self.interpreter.push(line.decode('charmap'))
 
 						if self.locals["here"] != self.active_addr:
 							if not self.active_view.file.navigate(self.active_view.file.view, self.locals["here"]):
@@ -660,3 +661,4 @@ def redirect_stdio():
 	sys.stdin = _PythonScriptingInstanceInput(sys.stdin)
 	sys.stdout = _PythonScriptingInstanceOutput(sys.stdout, False)
 	sys.stderr = _PythonScriptingInstanceOutput(sys.stderr, True)
+	sys.excepthook = sys.__excepthook__
