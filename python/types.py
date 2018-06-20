@@ -28,8 +28,8 @@ import binaryninja
 from binaryninja import _binaryninjacore as core
 from binaryninja.enums import SymbolType, TypeClass, NamedTypeReferenceClass, InstructionTextTokenType, StructureType, ReferenceType, VariableSourceType
 
-#2-3 compatibility
-from six.moves import range
+# 2-3 compatibility
+from binaryninja import range
 
 
 class QualifiedName(object):

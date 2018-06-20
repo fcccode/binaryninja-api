@@ -28,7 +28,7 @@ from binaryninja import log
 from binaryninja.enums import VariableSourceType
 
 # 2-3 compatibility
-from six.moves import range
+from binaryninja import range
 
 
 class CallingConvention(object):

@@ -27,7 +27,7 @@ from binaryninja import _binaryninjacore as core
 from binaryninja.enums import MetadataType
 
 # 2-3 compatibility
-from six.moves import range
+from binaryninja import range
 
 
 class Metadata(object):

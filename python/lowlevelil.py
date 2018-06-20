@@ -28,7 +28,7 @@ from binaryninja.enums import LowLevelILOperation, LowLevelILFlagCondition, Inst
 from binaryninja import basicblock #required for LowLevelILBasicBlock
 
 # 2-3 compatibility
-from six.moves import range
+from binaryninja import range
 
 
 class LowLevelILLabel(object):

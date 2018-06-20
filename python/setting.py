@@ -24,7 +24,7 @@ import ctypes
 from binaryninja import _binaryninjacore as core
 
 # 2-3 compatibility
-from six.moves import range
+from binaryninja import range
 
 
 class Setting(object):

@@ -60,7 +60,7 @@ class TestBinaryNinjaAPI(unittest.TestCase):
         if len(stringDiffList) > 10:
             if not verbose:
                 stringDiff = \'\\n\'.join(line if len(line) <= 100 else line[:100] + "...and " + str(len(line) - 100) + " more characters" for line in stringDiffList[:10])
-                stringDiff += \'\\n\\n### And ' + str(len(stringDiffList)) + " more lines, use '-v' t show ###"
+                stringDiff += \'\\n\\n### And ' + str(len(stringDiffList)) + " more lines, use '-v' to show ###"
         elif not verbose:
             stringDiff = \'\\n\'.join(line if len(line) <= 100 else line[:100] + "...and " + str(len(line) - 100) + " more characters" for line in stringDiffList)
         stringDiff = \'\\n\\n\' + firstText + stringDiff

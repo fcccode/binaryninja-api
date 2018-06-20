@@ -38,8 +38,8 @@ from binaryninja import lineardisassembly
 from binaryninja import metadata
 
 # 2-3 compatibility
-from six import with_metaclass
-from six.moves import range
+from binaryninja import range
+from binaryninja import with_metaclass
 
 
 class BinaryDataNotification(object):

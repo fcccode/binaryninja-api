@@ -29,7 +29,6 @@ from binaryninja.enums import (Endianness, ImplicitRegisterExtend, BranchType,
 	InstructionTextTokenType, LowLevelILFlagCondition, FlagRole)
 import binaryninja
 from binaryninja import log
-
 from binaryninja import lowlevelil
 from binaryninja import types
 from binaryninja import databuffer
@@ -37,8 +36,9 @@ from binaryninja import platform
 from binaryninja import callingconvention
 
 # 2-3 compatibility
-from six import with_metaclass
-from six.moves import range
+from binaryninja import range
+from binaryninja import with_metaclass
+
 
 class _ArchitectureMetaClass(type):
 

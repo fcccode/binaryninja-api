@@ -31,9 +31,9 @@ from binaryninja import filemetadata
 from binaryninja import binaryview
 from binaryninja import function
 
-#2-3 compatibility
-from six import with_metaclass
-from six.moves import range
+# 2-3 compatibility
+from binaryninja import range
+from binaryninja import with_metaclass
 
 
 class PluginCommandContext(object):

@@ -27,7 +27,7 @@ from binaryninja.enums import FormInputFieldType, MessageBoxIcon, MessageBoxButt
 from binaryninja import binaryview
 
 # 2-3 compatibility
-from six.moves import range
+from binaryninja import range
 
 
 class LabelField(object):

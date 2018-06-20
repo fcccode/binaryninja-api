@@ -32,9 +32,9 @@ from binaryninja import _binaryninjacore as core
 from binaryninja.enums import ScriptingProviderExecuteResult, ScriptingProviderInputReadyState
 from binaryninja import log
 
-#2-3 compatibility
-from six import with_metaclass
-from six.moves import range
+# 2-3 compatibility
+from binaryninja import range
+from binaryninja import with_metaclass
 
 
 class _ThreadActionContext(object):

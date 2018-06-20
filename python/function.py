@@ -36,7 +36,7 @@ from binaryninja.enums import (AnalysisSkipReason, FunctionGraphType, BranchType
 	FunctionAnalysisSkipOverride)
 
 # 2-3 compatibility
-from six.moves import range
+from binaryninja import range
 
 
 class LookupTableEntry(object):
