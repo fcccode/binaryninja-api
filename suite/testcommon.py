@@ -66,22 +66,46 @@ class BinaryViewTestBuilder(Builder):
 
     def test_function_starts(self):
         """Function starts list doesnt match"""
-        return ["Function start: " + hex(x.start) for x in self.bv.functions]
+        result = []
+        for x in self.bv.functions:
+            bvStart = hex(x.start)
+            if bvStart[-1] == 'L':
+                bvStart = bvStart[:-1]
+            result.append("Function start: " + bvStart)
+        return result
 
     def test_function_symbol_names(self):
         """Function.symbol.name list doesnt match"""
-        return ["Symbol: " + x.symbol.name + ' ' + str(x.symbol.type) + ' ' + hex(x.symbol.address) for x in self.bv.functions]
+        result = []
+        for x in self.bv.functions:
+            symbolAddress = hex(x.symbol.address)
+            if symbolAddress[-1] == 'L':
+                symbolAddress = symbolAddress[:-1]
+            result.append("Symbol: " + x.symbol.name + ' ' + str(x.symbol.type) + ' ' + symbolAddress)
+        return result
 
     def test_function_can_return(self):
         """Function.can_return list doesnt match"""
-        return ["function name: " + x.symbol.name + ' type: ' + str(x.symbol.type) + ' address: ' + hex(x.symbol.address) + ' can_return: ' + str(bool(x.can_return)) for x in self.bv.functions]
+        result = []
+        for x in self.bv.functions:
+            symbolAddress = hex(x.symbol.address)
+            if symbolAddress[-1] == 'L':
+                symbolAddress = symbolAddress[:-1]
+            result.append("function name: " + x.symbol.name + ' type: ' + str(x.symbol.type) + ' address: ' + symbolAddress + ' can_return: ' + str(bool(x.can_return)))
+        return result
 
     def test_function_basic_blocks(self):
         """Function basic_block list doesnt match (start, end, has_undetermined_outgoing_edges)"""
         bblist = []
         for func in self.bv.functions:
             for bb in func.basic_blocks:
-                bblist.append("basic block {} start: ".format(str(bb)) + hex(bb.start) + ' end: ' + hex(bb.end) + ' undetermined outgoing edges: ' + str(bb.has_undetermined_outgoing_edges))
+                bbstart = hex(bb.start)
+                bbend = hex(bb.end)
+                if bbstart[-1] == 'L':
+                    bbstart = bbstart[:-1]
+                if bbend[-1] == 'L':
+                    bbend = bbend[:-1]
+                bblist.append("basic block {} start: ".format(str(bb)) + bbstart + ' end: ' + bbend + ' undetermined outgoing edges: ' + str(bb.has_undetermined_outgoing_edges))
                 for anno in func.get_block_annotations(bb.start):
                     bblist.append("basic block {} function annotation: ".format(str(bb)) + str(anno))
                 bblist.append("basic block {} test get self: ".format(str(bb)) + str(func.get_basic_block_at(bb.start)))
@@ -92,7 +116,13 @@ class BinaryViewTestBuilder(Builder):
         ilbblist = []
         for func in self.bv.functions:
             for bb in func.low_level_il.basic_blocks:
-                ilbblist.append("LLIL basic block {} start: ".format(str(bb)) + hex(bb.start) + ' end: ' + hex(bb.end) + ' outgoing edges: ' + str(len(bb.outgoing_edges)))
+                bbstart = hex(bb.start)
+                bbend = hex(bb.end)
+                if bbstart[-1] == 'L':
+                    bbstart = bbstart[:-1]
+                if bbend[-1] == 'L':
+                    bbend = bbend[:-1]
+                ilbblist.append("LLIL basic block {} start: ".format(str(bb)) + bbstart + ' end: ' + bbend + ' outgoing edges: ' + str(len(bb.outgoing_edges)))
         return ilbblist
 
     def test_function_med_il_basic_blocks(self):
@@ -100,7 +130,13 @@ class BinaryViewTestBuilder(Builder):
         ilbblist = []
         for func in self.bv.functions:
             for bb in func.medium_level_il.basic_blocks:
-                ilbblist.append("MLIL basic block {} start: ".format(str(bb)) + hex(bb.start) + ' end: ' + hex(bb.end) + ' outgoing_edges: ' + str(len(bb.outgoing_edges)))
+                bbstart = hex(bb.start)
+                bbend = hex(bb.end)
+                if bbstart[-1] == 'L':
+                    bbstart = bbstart[:-1]
+                if bbend[-1] == 'L':
+                    bbend = bbend[:-1]
+                ilbblist.append("MLIL basic block {} start: ".format(str(bb)) + bbstart + ' end: ' + bbend + ' outgoing_edges: ' + str(len(bb.outgoing_edges)))
         return ilbblist
 
     def test_symbols(self):
@@ -125,7 +161,6 @@ class BinaryViewTestBuilder(Builder):
                     retinfo.append("Postfix operands: " + str(ins.postfix_operands))
                     retinfo.append("SSA form: " + str(ins.ssa_form))
                     retinfo.append("Non-SSA form: " + str(ins.non_ssa_form))
-
         return retinfo
 
     def test_low_il_ssa(self):
@@ -149,9 +184,7 @@ class BinaryViewTestBuilder(Builder):
                     retinfo.append("SSA instruction index: " + str(func.get_ssa_instruction_index(tempind)))
                     retinfo.append("MLIL instruction index: " + str(func.get_medium_level_il_instruction_index(ins.instr_index)))
                     retinfo.append("Mapped MLIL instruction index: " + str(func.get_mapped_medium_level_il_instruction_index(ins.instr_index)))
-
         return retinfo
-
 
     def test_med_il_instructions(self):
         """MLIL instructions produced different output"""
@@ -168,10 +201,7 @@ class BinaryViewTestBuilder(Builder):
                     retinfo.append("Postfix operands: " + str(sorted([str(i) for i in ins.postfix_operands])))
                     retinfo.append("SSA form: " + str(ins.ssa_form))
                     retinfo.append("Non-SSA form" + str(ins.non_ssa_form))
-
         return retinfo
-
-
 
     def test_med_il_vars(self):
         """"Function med_il_vars doesn't match"""
@@ -209,29 +239,26 @@ class BinaryViewTestBuilder(Builder):
             funcinfo.append("Sample stack var: " + str(func.get_stack_var_at_frame_offset(0, 0)))
             func.delete_user_stack_var(0)
             func.delete_auto_stack_var(0)
-
         return funcinfo
 
     def test_function_llil(self):
         """Function LLIL produced different output"""
         retinfo = []
-
         for func in self.bv.functions:
             for llilbb in func.llil_basic_blocks:
                 retinfo.append("LLIL basic block: " + str(llilbb))
             for llilins in func.llil_instructions:
                 retinfo.append("LLIL instruction: " + str(llilins))
-
             for mlilbb in func.mlil_basic_blocks:
                 retinfo.append("MLIL basic block: " + str(mlilbb))
             for mlilins in func.mlil_instructions:
                 retinfo.append("MLIL instruction: " + str(mlilins))
-
             for ins in func.instructions:
-                retinfo.append("Instructiin: {}: ".format(hex(ins[1])) + ''.join([str(i) for i in ins[0]]))
-
+                instAddr = hex(ins[1])
+                if instAddr[-1] == 'L':
+                    instAddr = instAddr[:-1]
+                retinfo.append("Instruction: {}: ".format(instAddr) + ''.join([str(i) for i in ins[0]]))
         return retinfo
-
 
     def test_functions_attributes(self):
         """"Function attributes don't match"""
@@ -282,8 +309,6 @@ class BinaryViewTestBuilder(Builder):
                 token = str(token)
                 token = remove_low_confidence(token)
                 funcinfo.append("Function {} type token: ".format(func.name) + str(token))
-
-
         return funcinfo
 
     def test_BinaryView(self):
@@ -304,9 +329,21 @@ class BinaryViewTestBuilder(Builder):
         retinfo.append("BV Entry function: " + str(self.bv.entry_function))
         for i in self.bv:
             retinfo.append("BV function: " + str(i))
-        retinfo.append("BV entry point: " + hex(self.bv.entry_point))
-        retinfo.append("BV start: " + hex(self.bv.start))
-        retinfo.append("BV length: " + hex(len(self.bv)))
+
+        bvEP = hex(self.bv.entry_point)
+        if bvEP[-1] == 'L':
+            bvEP = bvEP[:-1]
+        retinfo.append("BV entry point: " + bvEP)
+
+        bvStart = hex(self.bv.start)
+        if bvStart[-1] == 'L':
+            bvStart = bvStart[:-1]
+        retinfo.append("BV start: " + bvStart)
+
+        bvLen = hex(len(self.bv))
+        if bvLen[-1] == 'L':
+            bvLen = bvLen[:-1]
+        retinfo.append("BV length: " + bvLen)
         return retinfo
 
 
@@ -383,8 +420,6 @@ class TestBuilder(Builder):
                     retinfo.append("Instruction: " + str(ins))
         return retinfo
 
-
-
     def test_Function(self):
         """Function produced different result"""
         inttype = binja.Type.int(4)
@@ -431,7 +466,6 @@ class TestBuilder(Builder):
 
     def test_Types(self):
         """Types produced different result"""
-
         file_name = os.path.join(self.test_store, "helloworld")
         bv = binja.BinaryViewType.get_view_of_file(file_name)
         preprocessed = binja.preprocess_source("""
@@ -462,12 +496,11 @@ class TestBuilder(Builder):
 
     def test_Plugin_bin_info(self):
         """print_syscalls plugin produced different result"""
-
         file_name = os.path.join(self.test_store, "helloworld")
         self.unpackage_file(file_name)
         result = subprocess.Popen(["python", os.path.join(self.examples_dir, "bin_info.py"), file_name], stdout=subprocess.PIPE).communicate()[0]
         # normalize line endings and path sep
-        return [result.replace(b"\\", b"/").replace(b"\r\n", b"\n")]
+        return [result.replace(b"\\", b"/").replace(b"\r\n", b"\n").decode("charmap")]
 
     def test_linear_disassembly(self):
         """linear_disassembly produced different result"""
@@ -484,7 +517,6 @@ class TestBuilder(Builder):
 
     def test_partial_register_dataflow(self):
         """partial_register_dataflow produced different results"""
-
         file_name = os.path.join(self.test_store, "partial_register_dataflow")
         self.unpackage_file(file_name)
         result = []
@@ -503,7 +535,6 @@ class TestBuilder(Builder):
             del bv
         finally:
             os.unlink(file_name)
-
         return result
 
 
@@ -523,16 +554,15 @@ class TestBuilder(Builder):
                     retinfo.append("LLIL possible first stack element: " + str(ins.get_possible_stack_contents(0,1)))
                     retinfo.append("LLIL possible second stack element: " + str(ins.get_possible_stack_contents_after(0,1)))
 
-
                     for flag in flag_list:
-                        retinfo.append("LLIL flag {} value at: ".format(flag, hex(ins.address)) + str(ins.get_flag_value(flag)))
-                        retinfo.append("LLIL flag {} value after {}: ".format(flag, hex(ins.address)) + str(ins.get_flag_value_after(flag)))
+                        addr = hex(ins.address)
+                        if addr[-1] == 'L':  # Python three does not do longs
+                            addr = addr[:-1]
+                        retinfo.append("LLIL flag {} value at: ".format(flag, addr) + str(ins.get_flag_value(flag)))
+                        retinfo.append("LLIL flag {} value after {}: ".format(flag, addr) + str(ins.get_flag_value_after(flag)))
 
-                        retinfo.append("LLIL flag {} possible value at {}: ".format(flag, hex(ins.address)) + str(ins.get_possible_flag_values(flag)))
-                        retinfo.append("LLIL flag {} possible value after {}: ".format(flag, hex(ins.address)) + str(ins.get_possible_flag_values_after(flag)))
-
-        os.unlink(file_name)
-
+                        retinfo.append("LLIL flag {} possible value at {}: ".format(flag, addr) + str(ins.get_possible_flag_values(flag)))
+                        retinfo.append("LLIL flag {} possible value after {}: ".format(flag, addr) + str(ins.get_possible_flag_values_after(flag)))
         os.unlink(file_name)
 
         return retinfo
@@ -553,25 +583,27 @@ class TestBuilder(Builder):
                     retinfo.append("MLIL second stack element: " + str(ins.get_stack_contents_after(0, 1)))
                     retinfo.append("MLIL possible first stack element: " + str(ins.get_possible_stack_contents(0, 1)))
                     retinfo.append("MLIL possible second stack element: " + str(ins.get_possible_stack_contents_after(0, 1)))
-                    
-                    for reg in reg_list:
-                        retinfo.append("MLIL reg {} var at {}: ".format(reg, hex(ins.address)) + str(ins.get_var_for_reg(reg)))
-                        retinfo.append("MLIL reg {} value at {}: ".format(reg, hex(ins.address)) + str(ins.get_reg_value(reg)))
-                        retinfo.append("MLIL reg {} value after {}: ".format(reg, hex(ins.address)) + str(ins.get_reg_value_after(reg)))
-                        retinfo.append("MLIL reg {} possible value at {}: ".format(reg, hex(ins.address)) + str(ins.get_possible_reg_values(reg)))
-                        retinfo.append("MLIL reg {} possible value after {}: ".format(reg, hex(ins.address)) + str(ins.get_possible_reg_values_after(reg)))
 
+                    for reg in reg_list:
+                        addr = hex(ins.address)
+                        if addr[-1] == 'L':  # Python three does not do longs
+                            addr = addr[:-1]
+                        retinfo.append("MLIL reg {} var at {}: ".format(reg, addr) + str(ins.get_var_for_reg(reg)))
+                        retinfo.append("MLIL reg {} value at {}: ".format(reg, addr) + str(ins.get_reg_value(reg)))
+                        retinfo.append("MLIL reg {} value after {}: ".format(reg, addr) + str(ins.get_reg_value_after(reg)))
+                        retinfo.append("MLIL reg {} possible value at {}: ".format(reg, addr) + str(ins.get_possible_reg_values(reg)))
+                        retinfo.append("MLIL reg {} possible value after {}: ".format(reg, addr) + str(ins.get_possible_reg_values_after(reg)))
 
                     for flag in flag_list:
-                        retinfo.append("MLIL flag {} value at: ".format(flag, hex(ins.address)) + str(ins.get_flag_value(flag)))
-                        retinfo.append("MLIL flag {} value after {}: ".format(flag, hex(ins.address)) + str(ins.get_flag_value_after(flag)))
-                        retinfo.append("MLIL flag {} possible value at {}: ".format(flag, hex(ins.address)) + str(ins.get_possible_flag_values(flag)))
-                        retinfo.append("MLIL flag {} possible value after {}: ".format(flag, hex(ins.address)) + str(ins.get_possible_flag_values(flag)))
-
+                        addr = hex(ins.address)
+                        if addr[-1] == 'L':  # Python three does not do longs
+                            addr = addr[:-1]
+                        retinfo.append("MLIL flag {} value at: ".format(flag, addr) + str(ins.get_flag_value(flag)))
+                        retinfo.append("MLIL flag {} value after {}: ".format(flag, addr) + str(ins.get_flag_value_after(flag)))
+                        retinfo.append("MLIL flag {} possible value at {}: ".format(flag, addr) + str(ins.get_possible_flag_values(flag)))
+                        retinfo.append("MLIL flag {} possible value after {}: ".format(flag, addr) + str(ins.get_possible_flag_values(flag)))
         os.unlink(file_name)
-
         return retinfo
-
 
     def test_events(self):
         """Event failure"""
@@ -580,18 +612,22 @@ class TestBuilder(Builder):
         bv = binja.BinaryViewType['ELF'].open(file_name)
 
         results = []
-        
 
         def simple_complete(self):
             results.append("analysis complete")
-
         evt = binja.AnalysisCompletionEvent(bv, simple_complete)
 
         class NotifyTest(binja.BinaryDataNotification):
 
             def data_written(self, view, offset, length):
                 def data_written_complete(self):
-                    results.append("data written: offset {0} length {1}".format(hex(offset), hex(length)))
+                    offset = hex(offset)
+                    length = hex(length)
+                    if offset[-1] == 'L':
+                        offset = offset[:-1]
+                    if length[-1] == 'L':
+                        length = length[:-1]
+                    results.append("data written: offset {0} length {1}".format(offset, length))
                 evt = binja.AnalysisCompletionEvent(bv, data_written_complete)
 
             def data_inserted(self, view, offset, length):
@@ -641,7 +677,13 @@ class TestBuilder(Builder):
 
             def string_found(self, view, string_type, offset, length):
                 def string_found_complete(self):
-                    results.append("string found: offset {0} length {1}".format(hex(offset), hex(length)))
+                    offset = hex(offset)
+                    length = hex(length)
+                    if offset[-1] == 'L':
+                        offset = offset[:-1]
+                    if length[-1] == 'L':
+                        length = length[:-1]
+                    results.append("string found: offset {0} length {1}".format(offset, length))
                 evt = binja.AnalysisCompletionEvent(bv, string_found_complete)
 
             def string_removed(self, view, string_type, offset, length):
@@ -663,7 +705,6 @@ class TestBuilder(Builder):
         test = NotifyTest()
         bv.register_notification(test)
         sacrificial_addr = 0x84fc
-
 
         type, name = bv.parse_type_string("int foo")
         type_id = type.generate_auto_type_id("source", name)
