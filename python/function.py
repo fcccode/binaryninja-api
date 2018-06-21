@@ -1160,6 +1160,11 @@ class Function(object):
 			for j in range(0, lines[i].count):
 				token_type = InstructionTextTokenType(lines[i].tokens[j].type)
 				text = lines[i].tokens[j].text
+				try:
+					if isinstance(text, unicode):
+						text = text.encode("charmap")
+				except NameError:
+					pass
 				value = lines[i].tokens[j].value
 				size = lines[i].tokens[j].size
 				operand = lines[i].tokens[j].operand

@@ -67,16 +67,9 @@ oracle: environment python/_binaryninjacore.py python/enums.py
 	python3 suite/generator.py
 
 environment: environment_clean python/_binaryninjacore.py python/enums.py 
-	@echo "Copying libs to needed locations..."
+	@echo "Copying over libs..."
 	cp $(INSTALLPATH)/libbinaryninjacore.so.1 .
-	cp $(INSTALLPATH)/libcurl.so.4 .
-	cp $(INSTALLPATH)/libcrypto.so.1.0.2 .
-	cp $(INSTALLPATH)/libssl.so.1.0.2 .
-
 	cp $(INSTALLPATH)/libbinaryninjacore.so.1 python/
-	cp $(INSTALLPATH)/libcurl.so.4 python/
-	cp $(INSTALLPATH)/libcrypto.so.1.0.2 python/
-	cp $(INSTALLPATH)/libssl.so.1.0.2 python/
 
 	@echo "Building 'binaryninja' Packages..."
 	mkdir -p suite/binaryninja/
@@ -95,8 +88,8 @@ environment_clean:
 	rm -rf python/examples/binaryninja/
 	
 	@echo "Removing libs..."
-	rm -f lib*
-	rm -f python/lib*
+	rm -f libbinaryninjacore.so.1
+	rm -f python/libbinaryninjacore.so.1
 
 	@echo "Removing Architectures..."
 	rm -rf types/

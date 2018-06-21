@@ -61,7 +61,7 @@ class TestBinaryNinjaAPI(unittest.TestCase):
     def setUpClass(self):
         self.builder = testcommon.TestBuilder("suite/binaries/test_corpus")
         try:
-            #Python 2 does not have the encodings option
+            # Python 2 does not have the encodings option
             self.oracle_test_data = pickle.load(open(os.path.join("suite", "oracle.pkl"), "rb"), encoding='charmap')
         except TypeError:
             self.oracle_test_data = pickle.load(open(os.path.join("suite", "oracle.pkl"), "r"))
@@ -75,7 +75,7 @@ class TestBinaryNinjaAPI(unittest.TestCase):
 
         self.assertTrue(os.path.exists(testname + ".pkl"), "Test pickle doesn't exist")
         try:
-            #Python 2 does not have the encodings option
+            # Python 2 does not have the encodings option
             binary_oracle = pickle.load(open(testname + ".pkl", "rb"), encoding='charmap')
         except TypeError:
             binary_oracle = pickle.load(open(testname + ".pkl", "r"))
