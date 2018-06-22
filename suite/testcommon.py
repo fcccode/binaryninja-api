@@ -388,85 +388,78 @@ class TestBuilder(Builder):
 
         strResult = binja.Architecture["x86"].assemble("xor eax, eax")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("x86 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("x86 assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("x86 assembly: " + str(strResult))
+            result.append("x86 assembly: " + repr(str(strResult)))
         strResult = binja.Architecture["x86_64"].assemble("xor rax, rax")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("x86_64 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("x86_64 assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("x86_64 assembly: " + str(strResult))
+            result.append("x86_64 assembly: " + repr(str(strResult)))
         strResult = binja.Architecture["mips32"].assemble("move $ra, $zero")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("mips32 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("mips32 assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("mips32 assembly: " + str(strResult))
+            result.append("mips32 assembly: " + repr(str(strResult)))
         strResult = binja.Architecture["mipsel32"].assemble("move $ra, $zero")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("mipsel32 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("mipsel32 assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("mipsel32 assembly: " + str(strResult))
+            result.append("mipsel32 assembly: " + repr(str(strResult)))
         strResult = binja.Architecture["armv7"].assemble("str r2, [sp,  #-0x4]!")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("armv7 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("armv7 assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("armv7 assembly: " + str(strResult))
+            result.append("armv7 assembly: " + repr(str(strResult)))
         strResult = binja.Architecture["aarch64"].assemble("mov x0, x0")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("aarch64 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("aarch64 assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("aarch64 assembly: " + str(strResult))
+            result.append("aarch64 assembly: " + repr(str(strResult)))
         strResult = binja.Architecture["thumb2"].assemble("ldr r4, [r4]")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("thumb2 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("thumb2 assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("thumb2 assembly: " + str(strResult))
+            result.append("thumb2 assembly: " + repr(str(strResult)))
         strResult = binja.Architecture["thumb2eb"].assemble("ldr r4, [r4]")
         if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("thumb2eb assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
+            result.append("thumb2eb assembly: " + "'" + str(strResult)[2:-1] + "'")
         else:
-            result.append("thumb2eb assembly: " + str(strResult))
+            result.append("thumb2eb assembly: " + repr(str(strResult)))
+
         # fail cases
-        strResult = binja.Architecture["x86"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("x86 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("x86 assembly: " + str(strResult))
-        strResult = binja.Architecture["x86_64"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("x86_64 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("x86_64 assembly: " + str(strResult))
-        strResult = binja.Architecture["mips32"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("mips32 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("mips32 assembly: " + str(strResult))
-        strResult = binja.Architecture["mipsel32"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("mipsel32 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("mipsel32 assembly: " + str(strResult))
-        strResult = binja.Architecture["armv7"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("armv7 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("armv7 assembly: " + str(strResult))
-        strResult = binja.Architecture["aarch64"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("aarch64 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("aarch64 assembly: " + str(strResult))
-        strResult = binja.Architecture["thumb2"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("thumb2 assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("thumb2 assembly: " + str(strResult))
-        strResult = binja.Architecture["thumb2eb"].assemble("thisisnotaninstruction")
-        if sys.version_info.major == 3 and not strResult[0] is None:
-            result.append("thumb2eb assembly: " + "('" + str(strResult[0])[2:-1] + "', '" + str(strResult[1]) + "')")
-        else:
-            result.append("thumb2eb assembly: " + str(strResult))
+        try:
+            strResult = binja.Architecture["x86"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'x86'")
+        try:
+            strResult = binja.Architecture["x86_64"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'x86_64'")
+        try:
+            strResult = binja.Architecture["mips32"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'mips32'")
+        try:
+            strResult = binja.Architecture["mipsel32"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'mipsel32'")
+        try:
+            strResult = binja.Architecture["armv7"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'armv7'")
+        try:
+            strResult = binja.Architecture["aarch64"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'aarch64'")
+        try:
+            strResult = binja.Architecture["thumb2"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'thumb2'")
+        try:
+            strResult = binja.Architecture["thumb2eb"].assemble("thisisnotaninstruction")
+        except ValueError:
+            result.append("Assemble Failed As Expected; 'thisisnotaninstruction' is not an instruction on 'thumb2eb'")
         return result
 
     def test_Architecture(self):

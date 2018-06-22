@@ -2415,8 +2415,8 @@ class CoreArchitecture(Architecture):
 
 		:param str code: string representation of the instructions to be assembled
 		:param int addr: virtual address that the instructions will be loaded at
-		:return: the bytes for the assembled instructions or error string
-		:rtype: (a tuple of instructions and empty string) or (or None and error string), Note: Python3 will output a 'bytes' object, Python2 a 'str'
+		:return: the bytes for the assembled instructions
+		:rtype: Python3 - a 'bytes' object; Python2 - a 'str'
 		:Example:
 
 			>>> arch.assemble("je 10")
@@ -2426,14 +2426,11 @@ class CoreArchitecture(Architecture):
 		result = databuffer.DataBuffer()
 		errors = ctypes.c_char_p()
 		if not core.BNAssemble(self.handle, code, addr, result.handle, errors):
-			if isinstance(errors.value, str):
-				return None, errors.value
-			else:
-				return None, errors.value.decode('charmap')
-		if isinstance(errors.value, str):
-			return str(result), errors.value
+			raise ValueError("Could not assemble")
+		if isinstance(str(result), bytes):
+			return str(result)
 		else:
-			return bytes(result), errors.value.decode("charmap")
+			return bytes(result)
 
 	def is_never_branch_patch_available(self, data, addr):
 		"""
