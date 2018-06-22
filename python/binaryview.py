@@ -98,7 +98,7 @@ class StringReference(object):
 
 	@property
 	def value(self):
-		return self.view.read(self.start, self.length)
+		return self.view.read(self.start, self.length).decode("charmap")
 
 	def __repr__(self):
 		return "<%s: %#x, len %#x>" % (self.type, self.start, self.length)

@@ -33,6 +33,13 @@ class TestBinaryNinjaAPI(unittest.TestCase):
 
         if equality:
             return (True, '')
+        elif not strictOrdering:
+            try:
+                for elem in oracle:
+                    test.remove(elem)
+                    oracle.remove(elem)  # If it's not in the test, it won't get here!
+            except ValueError:
+                pass
 
         differ = difflib.Differ(charjunk=difflib.IS_CHARACTER_JUNK)
         skipped_lines = 0
